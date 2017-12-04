@@ -1,12 +1,13 @@
 # Xymon Notes Editor
 A web-based editor for modifying your server notes files in Xymon.  Xymon's built-in notes viewer will pick up any changes you make.
 
-| ----- | ----- |
-| Author | [Galen Johnson](solitaryr@gmail.com) |
+|     |     |
+| ------------- | ------------------------------------ |
+| Author        | [Galen Johnson](solitaryr@gmail.com) |
 | Compatibility | Xymon 4.2, Xymon 4.3 |
-| Requirements | Perl, HTML::FromText, perl-CGI |
-| Download | None |
-| Last Update | 2012-01-03 |
+| Requirements  | Perl, HTML::FromText, perl-CGI |
+| Download      | None |
+| Last Update   | 2012-01-03 |
 
 ##### Installation
   * Install the prerequisite perl modules
