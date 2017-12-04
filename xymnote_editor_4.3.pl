@@ -1,5 +1,5 @@
 #!/usr/bin/perl
-
+#
 #############################################
 # Name: bbnote_editor.cgi
 # Xymon update: Galen Johnson
@@ -14,19 +14,23 @@ use HTML::FromText;
 
 
 # Your $XYMONHOME
-my $xymon_home = "/home/xymon/server";
-# hobbit config file
-my $xymoncfg="$xymon_home/etc/xymonserver.cfg";
+my $xymon_home = "/etc/xymon";
+# xymon config file
+my $xymoncfg="$xymon_home/xymonserver.cfg";
 # The web path to gifs.
-my $xymon_gifs = "$xymon_home/www/gifs/"; # The main web path for xymon display.
 my $xymon_web  = "/xymon/";
+# xymon_gifs appears to be unused
+my $xymon_gifs = "$xymon_home/www/gifs/"; # The main web path for xymon display.
 
-# The actual www notes dir on the server my $xymon_notes  = "$xymon_home/www/notes"; # This is where the data files are stored.
+# The actual www notes dir on the server
+my $xymon_notes  = "$xymon_home/www/notes"; # This is where the data files are stored.
 # Not to be confused with the default notes dir.
-my $xymon_notesdata  = "$xymon_home/etc/notesdata"; my $xymon_header = "$xymon_home/web/notes_header"; # Change this if needed.
+my $xymon_notesdata  = "$xymon_home/notesdata";
+my $xymon_header = "$xymon_home/web/notes_header"; # Change this if needed.
 my $xymon_footer = "$xymon_home/web/notes_footer"; # Change this if needed.
 #Standard hosts.cfg file
-my $xymon_hosts = "$xymon_home/etc/hosts.cfg"; my $xymon_showhosts = "$xymon_home/bin/bbhostshow";
+my $xymon_hosts = "$xymon_home/hosts.cfg";
+my $xymon_showhosts = "$xymon_home/bin/bbhostshow";
 
 # No changes needed below.
 my $version = "4.3.5";
@@ -39,7 +43,8 @@ $host =~ s/(\.html)$//g;
 my $note = param("note");
 my @lines;
 
-# Set up the environment variables and dynamic variables from xymonserver.cfg foreach (`. $xymoncfg; set`) {
+# Set up the environment variables and dynamic variables from xymonserver.cfg
+foreach (`. $xymoncfg; set`) {
     chomp;
     my ($var,$val) = /^\s*(.*?)\s*=\s*(.*)/;
     $ENV{$var}  = $val;
@@ -72,7 +77,6 @@ sub make_note {
     &print_footer($color);
     select STDOUT;
     close NOTE;
-
 }
 
 sub save_note {
@@ -86,36 +90,50 @@ sub save_note {
 sub edit_note {
     if ($cmd =~ /add html/) {
         my $t2h = HTML::FromText->new({
-            blockcode  => 1,
-            lines      => 1,
-            tables     => 1,
-            bullets    => 1,
-            numbers    => 1,
-            urls       => 1,
-            email      => 1,
-            bold       => 1,
-            underline  => 1,
-        });
+                  blockcode  => 1,
+                  lines      => 1,
+                  tables     => 1,
+                  bullets    => 1,
+                  numbers    => 1,
+                  urls       => 1,
+                  email      => 1,
+                  bold       => 1,
+                  underline  => 1,
+                  });
         $note = $t2h->parse( $note );
         #$note =~ s/\n/<br>/sgi; #
-
     }
+
     if ($cmd =~ /strip html/) {
         $note =~ s/<.*?>//sgi;
     }
+
     print <<HTML;
-<CENTER><TABLE BORDER="1" CELLPADDING="3><CAPTION><H2><CENTER>$host [$hosts{$host}]</CENTER></H2></CAPTION>
-<TR><TD ALIGN="CENTER"><form method="POST"><input type="hidden" name="host" value="$host"> <TEXTAREA ROWS="35" COLS="80" NAME="note" STYLE="background-color:#000033;color:dddddd">
+<CENTER>
+  <TABLE BORDER="1" CELLPADDING="3>
+    <CAPTION>
+      <H2><CENTER>$host [$hosts{$host}]</CENTER></H2>
+    </CAPTION>
+    <TR>
+      <TD ALIGN="CENTER">
+        <form method="POST">
+          <input type="hidden" name="host" value="$host">
+          <TEXTAREA ROWS="35" COLS="80" NAME="note" STYLE="background-color:#000033;color:dddddd">
 HTML
-if ($note) {
-    print $note;
-} elsif ($lines[0]) {
-    print @lines;
-} else {
-    print '<!-- Remember to use proper HTML formatting here. -->'; }
-    print <<HTML;
-</TEXTAREA><br>
-<input name="cmd" value="preview" type="submit"> <input name="cmd" value="add html tags" type="submit"> <input name="cmd" value="strip html tags" type="submit"> <input name="cmd" value="cancel" type="submit"></form></TD></TR></TABLE></CENTER>
+    if ($note) {
+        print $note;
+    } elsif ($lines[0]) {
+        print @lines;
+    } else {
+        print '<!-- Remember to use proper HTML formatting here. -->'; }
+        print <<HTML;
+          </TEXTAREA><br>
+          <input name="cmd" value="preview" type="submit"> <input name="cmd" value="add html tags" type="submit"> <input name="cmd" value="strip html tags" type="submit"> <input name="cmd" value="cancel" type="submit">
+        </form>
+      </TD>
+    </TR>
+  </TABLE>
+</CENTER>
 HTML
 }
 
@@ -126,14 +144,18 @@ HTML
     if ($lines[0]) {
         print @lines;
         print <<HTML;
-</TD></TR><TR><TD ALIGN="CENTER"><form method="POST"><input type="hidden" name="host" value="$host"> HTML
+</TD></TR><TR><TD ALIGN="CENTER"><form method="POST"><input type="hidden" name="host" value="$host">
+HTML
     } elsif ($cmd =~ /preview/) {
         print <<HTML;
-$note</TD></TR><TR><TD ALIGN="CENTER"><form method="POST"><input type="hidden" name="host" value="$host"> <input name="cmd" value="save" type="submit"> HTML
+$note</TD></TR><TR><TD ALIGN="CENTER"><form method="POST"><input type="hidden" name="host" value="$host"> <input name="cmd" value="save" type="submit">
+HTML
     } else {
         print <<HTML;
-The are no notes for $host [$hosts{$host}].</TD></TR> <TR><TD ALIGN="CENTER"><form method="POST"><input type="hidden" name="host" value="$host"> HTML }
-    print <<HTML;
+The are no notes for $host [$hosts{$host}].</TD></TR> <TR><TD ALIGN="CENTER"><form method="POST"><input type="hidden" name="host" value="$host">
+HTML
+    }
+        print <<HTML;
 <input type="hidden" name="note" value='$note'> <input name="cmd" value="edit" type="submit"> <input name="cmd" value="list" type="submit"></form></TD></TR></TABLE></CENTER>
 HTML
 }
@@ -153,12 +175,13 @@ sub get_note {
     }
 }
 
-sub print_menu{
+sub print_menu {
     print '<CENTER><TABLE BORDER="1" CELLPADDING="3"><CAPTION><H2><CENTER>Xymon Notes</CENTER></H2><b></b></CAPTION>';
     for my $host(sort keys %hosts) {
         print <<HTML;
 <TR><TD>$host</TD><TD>$hosts{$host}</TD>
-<TD><form method="POST"><input type="hidden" name="host" value="$host"> <input name="cmd" value="view" type="submit"> <input name="cmd" value="edit" type="submit"></form></TD></TR> HTML
+<TD><form method="POST"><input type="hidden" name="host" value="$host"> <input name="cmd" value="view" type="submit"> <input name="cmd" value="edit" type="submit"></form></TD></TR>
+HTML
     }
     print '</TABLE></CENTER>';
 }
@@ -178,10 +201,10 @@ sub print_header {
     print "Content-type: text/html; charset=iso-8859-1\n\n";
     open (HEAD, "<$xymon_header") or &print_error("I can't open $xymon_header for reading!");
     while (<HEAD>) {
-       # It's a bit hard to edit with a refresh ;)
+        # It's a bit hard to edit with a refresh ;)
         if (/META/i && /HTTP-EQUIV/i && /REFRESH/i && /CONTENT/i) { s/<(.*?)>/<!-- Refresh removed -->/g; }
         s/&XYMONLOGO/$ENV{'XYMONLOGO'}/g;
-	s/&XYMONBACKGROUND/$color/g;
+        s/&XYMONBACKGROUND/$color/g;
         s/&XYMONMENUSKIN/$ENV{'XYMONMENUSKIN'}/g;
         s/&XYMONPAGEPATH/$ENV{'XYMONPAGEPATH'}/g;
         s/&XYMONSKIN/$ENV{'XYMONSKIN'}/g;
@@ -191,7 +214,7 @@ sub print_header {
     close HEAD;
 }
 
-sub print_footer{
+sub print_footer {
     open (FOOT, "<$xymon_footer") or &print_error("I can't open $xymon_footer for reading!");
     while (<FOOT>) {
         s/&XYMONMENUSKIN/$ENV{'XYMONMENUSKIN'}/g;
@@ -205,7 +228,6 @@ sub print_footer{
 my ($oldbar) = $|;
 my $cfh = select (STDOUT);
 $| = 1;
-
 &get_hosts;
 &print_header($color); # I like blue ;)
 if ($cmd =~ /edit|html/) {
@@ -227,4 +249,4 @@ if ($cmd =~ /edit|html/) {
 &print_footer;
 
 $| = $oldbar;
- select ($cfh);
+select ($cfh);
