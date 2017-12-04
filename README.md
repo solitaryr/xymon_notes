@@ -29,7 +29,8 @@ chgrp apache /usr/local/hobbit/server/etc/notesdata
 ```html
  <a class=\"inner\" href=\"$BBSERVERSECURECGIURL/bbnote_editor.cgi\">Edit Notes</a><span class=\"invis\"> | </span> \
 ```
-  * For xymon 4.3.5 insert following line in $XYMONHOME/server/etc/xymonmenu.cfg ```html
+  * For xymon 4.3.5 insert following line in $XYMONHOME/server/etc/xymonmenu.cfg
+  ```html
 <a class="inner" href="$XYMONSERVERCGIURL/bbnote_editor.cgi">Edit Notes</a><span class="invis"> | </span>
 ```
 
@@ -38,7 +39,7 @@ chgrp apache /usr/local/hobbit/server/etc/notesdata
 ##### To Do
 
 ##### Credits
-  * Chris Naude who wrote the [[ http://www.deadcat.net/viewfile.php?fileid=943 | original BB script ]]
+  * Chris Naude who wrote the [original BB script](http://www.deadcat.net/viewfile.php?fileid=943)
 
 
 ##### Changelog
