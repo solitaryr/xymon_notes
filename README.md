@@ -1,12 +1,12 @@
 # Xymon Notes Editor
 A web-based editor for modifying your server notes files in Xymon.  Xymon's built-in notes viewer will pick up any changes you make.
 
------ | -----
-Author | [[ solitaryr@gmail.com | Galen Johnson ]]
-Compatibility | Xymon 4.2, Xymon 4.3
-Requirements | Perl, HTML::FromText, perl-CGI
-Download | None
-Last Update | 2012-01-03
+| ----- | ----- |
+| Author | [Galen Johnson](solitaryr@gmail.com) |
+| Compatibility | Xymon 4.2, Xymon 4.3 |
+| Requirements | Perl, HTML::FromText, perl-CGI |
+| Download | None |
+| Last Update | 2012-01-03 |
 
 ##### Installation
   * Install the prerequisite perl modules
@@ -19,10 +19,11 @@ chgrp apache /usr/local/hobbit/server/etc/notesdata
   * Update the code for your paths
   * Put the header and footer file under $HOBBITSERVER/web
   * Put the bbnote_editor.cgi script under the $HOBBIT/cgi-secure
-  * Update your Administration links in $HOBBITSERVER/www/menu/menu_items.js with ```
+  * Update your Administration links in $HOBBITSERVER/www/menu/menu_items.js with
+  ```
 ['Edit Notes', '/hobbit-seccgi/bbnote_editor.cgi'],
 ```
-  ***UPDATE: ** Ubuntu or Debian users should modify this file instead ```/etc/hobbit/web/menu.cfg```
+  * **UPDATE:** Ubuntu or Debian users should modify this file instead ```/etc/hobbit/web/menu.cfg```
   * Insert the following line in Administration section
 ```html
  <a class=\"inner\" href=\"$BBSERVERSECURECGIURL/bbnote_editor.cgi\">Edit Notes</a><span class=\"invis\"> | </span> \
