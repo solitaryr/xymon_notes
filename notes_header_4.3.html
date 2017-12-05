@@ -1,54 +1,63 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
 <HTML>
 <HEAD>
-  <TITLE>Xymon - Notes</TITLE>
-
-  <script language="javascript" type="text/javascript">
-  <!--
-    today = new Date
-    weekDayName = new Array ("Sun","Mon","Tue","Wed","Thu","Fri","Sat")
-    monthName = new Array ("Jan","Feb","March","April","May","June","July","Aug","Sep","Oct","Nov","Dec")
-
-    function printDate() {
-      document.write(weekDayName[today.getDay()]+ ", " + monthName[today.getMonth()] + " " + today.getDate()+ " " + " " + today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds() + " " +today.getFullYear())
-    }
-  -->
-  </script>
-
-  <style type="text/css">
-    body {
-    background-repeat: repeat-y;
-    background-color:black;
-     }
-  </style>
-
-  <!-- Styles for the Xymon body  -->
-  <link rel="stylesheet" type="text/css" href="&XYMONBODYCSS">
-
-  <!-- Styles for the menu bar -->
-  <link rel="stylesheet" type="text/css" href="&XYMONBODYMENUCSS">
-
-  <!-- The favicon image -->
-  <link rel="shortcut icon" href="&XYMONSKIN/favicon-&XYMWEBBACKGROUND.ico">
+ 
+<TITLE>Xymon - Notes</TITLE>
+ 
+<script language="javascript" type="text/javascript">
+ 
+<!--
+        today = new Date
+        weekDayName = new Array ("Sun","Mon","Tue","Wed","Thu","Fri","Sat")
+        monthName = new Array ("Jan","Feb","March","April","May","June","July","Aug","Sep","Oct","Nov","Dec")
+ 
+        function printDate()
+ 
+        {
+        document.write(weekDayName[today.getDay()]+ ", " + monthName[today.getMonth()] + " " + today.getDate()+ " " + " " + today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds() + " " +today.getFullYear())
+        }
+-->
+ 
+</script>
+ 
+<style type="text/css">
+        body {
+        background-repeat: repeat-y;
+        background-color:black;
+         }
+</style>
+ 
+ 
+<!-- Styles for the Xymon body  -->
+<link rel="stylesheet" type="text/css" href="&XYMONBODYCSS">
+ 
+<!-- Styles for the menu bar -->
+<link rel="stylesheet" type="text/css" href="&XYMONBODYMENUCSS">
+ 
+<!-- The favicon image -->
+<link rel="shortcut icon" href="&XYMONSKIN/favicon-&XYMWEBBACKGROUND.ico">
+ 
 </HEAD>
-
+ 
 <BODY BGCOLOR="&XYMONBACKGROUND" BACKGROUND="&XYMONSKIN/bkg-&XYMONBACKGROUND.gif" TEXT="#FFFFFF" LINK="#00FFAA" VLINK="#FFFF44">
+ 
+&XYMONBODYHEADER
 
-  <TABLE SUMMARY="Topline" WIDTH="100%">
-  <TR><TD HEIGHT=16>&nbsp;</TD></TR>  <!-- For the menu bar -->
-  <TR>
-    <TD VALIGN=MIDDLE ALIGN=LEFT WIDTH="30%">
-      <FONT FACE="Arial, Helvetica" SIZE="+1" COLOR="silver"><B><A HREF="http://xymon/" style="text-decoration: none">&XYMONLOGO</B></FONT>
-    </TD>
-    <TD VALIGN=MIDDLE ALIGN=CENTER WIDTH="40%">
-      <CENTER><FONT FACE="Arial, Helvetica" SIZE="+1" COLOR="silver"><B>Current Status</B></FONT></CENTER>
-    </TD>
-    <TD VALIGN=MIDDLE ALIGN=RIGHT WIDTH="30%">
-     <FONT FACE="Arial, Helvetica" SIZE="+1" COLOR="silver"><B><script language="javascript" type="text/javascript">printDate()</script></B></FONT>
-    </TD>
-  </TR>
-  <TR>
-    <TD COLSPAN=3> <HR WIDTH="100%"> </TD>
-  </TR>
-  </TABLE>
-  <BR>
+<TABLE SUMMARY="Topline" WIDTH="100%">
+<TR><TD HEIGHT=16>&nbsp;</TD></TR>  <!-- For the menu bar -->
+<TR>
+  <TD VALIGN=MIDDLE ALIGN=LEFT WIDTH="30%">
+    <FONT FACE="Arial, Helvetica" SIZE="+1" COLOR="silver"><B><A HREF="https://pbrmon.unx.sas.com/xymon/" style="text-decoration: none">&XYMONLOGO</B></FONT>
+  </TD>
+  <TD VALIGN=MIDDLE ALIGN=CENTER WIDTH="40%">
+    <CENTER><FONT FACE="Arial, Helvetica" SIZE="+1" COLOR="silver"><B>Current Status</B></FONT></CENTER>
+  </TD>
+  <TD VALIGN=MIDDLE ALIGN=RIGHT WIDTH="30%">
+   <FONT FACE="Arial, Helvetica" SIZE="+1" COLOR="silver"><B><script language="javascript" type="text/javascript">printDate()</script></B></FONT>
+  </TD>
+</TR>
+<TR>
+  <TD COLSPAN=3> <HR WIDTH="100%"> </TD>
+</TR>
+</TABLE>
+<BR>
