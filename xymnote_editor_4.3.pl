@@ -1,7 +1,7 @@
 #!/usr/bin/perl
 #
 #############################################
-# Name: bbnote_editor.cgi
+# Name: xymnote_editor.cgi
 # Xymon update: Galen Johnson
 # Original Author: Chris Naude
 # Purpose: Manage HTML notes files

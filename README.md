@@ -3,7 +3,7 @@ A web-based editor for modifying your server notes files in Xymon.  Xymon's buil
 
 |     |     |
 | ------------- | ------------------------------------ |
-| Author        | [Galen Johnson](solitaryr@gmail.com) |
+| Maintainer    | [Galen Johnson](solitaryr@gmail.com) |
 | Compatibility | Xymon 4.2, Xymon 4.3 |
 | Requirements  | Perl, HTML::FromText, perl-CGI |
 | Download      | None |
@@ -11,32 +11,34 @@ A web-based editor for modifying your server notes files in Xymon.  Xymon's buil
 
 ##### Installation
   * Install the prerequisite perl modules
-  * Create the notesdata directory ($HOBBITSERVER/etc/notesdata) with ownerships and permissions for your webserver to write to it.
+  * Create the notesdata directory ($XYMONSERVER/etc/notesdata) with ownerships and permissions for your webserver to write to it.  
 ```bash
-mkdir -m 775 /usr/local/hobbit/server/etc/notesdata
-chgrp apache /usr/local/hobbit/server/etc/notesdata
+mkdir -m 775 /usr/local/xymon/server/etc/notesdata
+chgrp apache /usr/local/xymon/server/etc/notesdata
 ```
 
   * Update the code for your paths
-  * Put the header and footer file under $HOBBITSERVER/web
-  * Put the bbnote_editor.cgi script under the $HOBBIT/cgi-secure
-  * Update your Administration links in $HOBBITSERVER/www/menu/menu_items.js with
+  * Put the header and footer file under $XYMONSERVER/web
+  * Put the xymnote_editor.cgi script under the $XYMON/cgi-secure
+  * Update your Administration links in $XYMONSERVER/www/menu/menu_items.js with
   ```
-['Edit Notes', '/hobbit-seccgi/bbnote_editor.cgi'],
+['Edit Notes', '/xymon-seccgi/xymnote_editor.cgi'],
 ```
   * **UPDATE:** Ubuntu or Debian users should modify this file instead ```/etc/hobbit/web/menu.cfg```
   * Insert the following line in Administration section
 ```html
- <a class=\"inner\" href=\"$BBSERVERSECURECGIURL/bbnote_editor.cgi\">Edit Notes</a><span class=\"invis\"> | </span> \
+ <a class=\"inner\" href=\"$BBSERVERSECURECGIURL/xymnote_editor.cgi\">Edit Notes</a><span class=\"invis\"> | </span> \
 ```
-  * For xymon 4.3.5 insert following line in $XYMONHOME/server/etc/xymonmenu.cfg
+  * For xymon 4.3.5 insert following line in $XYMONSERVER/etc/xymonmenu.cfg
   ```html
-<a class="inner" href="$XYMONSERVERCGIURL/bbnote_editor.cgi">Edit Notes</a><span class="invis"> | </span>
+<a class="inner" href="$XYMONSERVERSECURECGIURL/xymnote_editor.cgi">Edit Notes</a><span class="invis"> | </span>
 ```
 
 ##### Known  Bugs and Issues
 
 ##### To Do
+- [ ] Drop BB support
+- [ ] Include an html editor like TimyMCE
 
 ##### Credits
   * Chris Naude who wrote the [original BB script](http://www.deadcat.net/viewfile.php?fileid=943)
