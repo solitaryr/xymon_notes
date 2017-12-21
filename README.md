@@ -38,7 +38,8 @@ chgrp apache /usr/local/xymon/server/etc/notesdata
 
 ##### To Do
 - [ ] Drop BB support
-- [ ] Include an html editor like TimyMCE
+- [ ] Include an html editor like TinyMCE
+- [ ] Use xymon notes folder instead of symlink
 
 ##### Credits
   * Chris Naude who wrote the [original BB script](http://www.deadcat.net/viewfile.php?fileid=943)
